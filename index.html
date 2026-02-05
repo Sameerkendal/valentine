@@ -22,7 +22,6 @@ body {
 }
 
 .card {
-  position: relative;
   background: white;
   width: 90%;
   max-width: 420px;
@@ -37,24 +36,24 @@ h1 {
 }
 
 #message {
-  margin: 15px 0;
+  margin: 18px 0;
   font-size: 16px;
   color: #333;
-  min-height: 48px;
+  min-height: 52px;
   font-weight: 500;
 }
 
 .buttons {
-  position: relative;
-  height: 140px;
+  margin-top: 20px;
 }
 
 button {
-  padding: 12px 26px;
+  padding: 12px 28px;
   border: none;
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 #yesBtn {
@@ -64,11 +63,8 @@ button {
 }
 
 #noBtn {
-  position: absolute;
   background: #ddd;
-  left: 50%;
-  top: 70px;
-  transform: translateX(-50%);
+  margin-left: 15px;
 }
 
 @keyframes beat {
@@ -79,7 +75,7 @@ button {
   100% { transform: scale(1); }
 }
 
-/* hearts */
+/* Floating hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -94,7 +90,7 @@ button {
   }
 }
 
-/* fireworks */
+/* Fireworks */
 .firework {
   position: fixed;
   width: 6px;
@@ -121,7 +117,7 @@ button {
 
   <div id="message">😊</div>
 
-  <div class="buttons">
+  <div class="buttons" id="buttons">
     <button id="yesBtn">YES 💕</button>
     <button id="noBtn">NO 🙃</button>
   </div>
@@ -136,31 +132,25 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const msg = document.getElementById("message");
 const music = document.getElementById("music");
+const buttons = document.getElementById("buttons");
 const card = document.getElementById("card");
 
 let attempts = 0;
 let yesScale = 1;
-let locked = false;
 
 const messages = [
   "Don’t you dare click NO 😤💖",
-  "Anjali 😂 NO is not allowed here",
-  "The YES button is literally beating for you 💓",
-  "You’re enjoying this too much 😏",
-  "Universe says YES 🌍✨",
-  "I’m blushing now… just say YES 🥹",
-  "Okay okay 😌 last try… YES ❤️"
+  "Anjali 😂 NO is not an option here",
+  "Look at the YES button… it’s beating for you 💓",
+  "Okay wow 😏 you’re enjoying this",
+  "The universe already said YES 🌍✨",
+  "I’m smiling like crazy… just press YES 🥹"
 ];
 
-function updateMessage() {
-  msg.textContent = messages[Math.min(attempts, messages.length - 1)];
-}
-
-function moveNoButton() {
-  if (locked) return;
-  locked = true;
-
-  updateMessage();   // 🔥 MESSAGE FIRST — ALWAYS
+noBtn.addEventListener("click", () => {
+  if (attempts < messages.length) {
+    msg.textContent = messages[attempts];
+  }
 
   yesScale += 0.15;
   yesBtn.style.transform = `scale(${yesScale})`;
@@ -169,37 +159,30 @@ function moveNoButton() {
     Math.max(0.6, 1.5 - attempts * 0.12) + "s";
 
   music.play();
-
-  const rect = card.getBoundingClientRect();
-  const x = Math.random() * (rect.width - 90);
-  const y = Math.random() * (rect.height - 120);
-
-  setTimeout(() => {
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-    locked = false;
-  }, 80); // ensures text paints before movement
-
   attempts++;
-}
 
-noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("touchstart", e => {
-  e.preventDefault();
-  moveNoButton();
+  // 🔥 After last message
+  if (attempts === messages.length) {
+    msg.textContent = "Alright 😌 NO is gone now… it’s just you and YES ❤️";
+    noBtn.remove();
+  }
 });
 
 yesBtn.addEventListener("click", () => {
   music.play();
+
+  yesScale += 0.2; // keeps growing every click
+  yesBtn.style.transform = `scale(${yesScale})`;
+
   card.innerHTML = `
     <h1>Anjali 💖🥰</h1>
-    <p>You said YES… and my heart just won 🥹❤️</p>
+    <p>You said YES… and I’ll never forget this moment 🥹❤️</p>
     <p>Happy Valentine’s Day 🌹✨</p>
   `;
   fireworks();
 });
 
-/* hearts */
+/* Floating hearts */
 setInterval(() => {
   const h = document.createElement("div");
   h.className = "heart";
@@ -210,9 +193,9 @@ setInterval(() => {
   setTimeout(() => h.remove(), 7000);
 }, 350);
 
-/* fireworks */
+/* Fireworks */
 function fireworks() {
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 18; i++) {
     const f = document.createElement("div");
     f.className = "firework";
     f.style.left = Math.random() * window.innerWidth + "px";
@@ -225,3 +208,4 @@ function fireworks() {
 
 </body>
 </html>
+
