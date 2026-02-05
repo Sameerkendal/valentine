@@ -6,118 +6,121 @@
 <title>For Anjali ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-        background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fad0c4, #ffdde1);
-        background-size: 400% 400%;
-        animation: gradientBG 10s ease infinite;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
 
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    .card {
-        background: rgba(255,255,255,0.95);
-        padding: 30px 20px;
-        border-radius: 22px;
-        text-align: center;
-        width: 90%;
-        max-width: 360px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        z-index: 10;
-    }
+.card {
+    background: rgba(255,255,255,0.95);
+    padding: 30px 20px;
+    border-radius: 22px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    z-index: 10;
+}
 
-    h1 {
-        color: #ff2e63;
-        font-size: 1.9rem;
-    }
+h1 {
+    color: #ff2e63;
+    font-size: 1.8rem;
+}
 
-    p {
-        color: #444;
-    }
+button {
+    padding: 14px 24px;
+    margin: 12px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+}
 
-    button {
-        padding: 14px 24px;
-        margin: 12px;
-        font-size: 1.1rem;
-        border: none;
-        border-radius: 14px;
-        cursor: pointer;
-        transition: transform 0.25s ease;
-    }
+#yesBtn {
+    background-color: #ff2e63;
+    color: white;
+    animation: heartbeat 1.5s infinite;
+}
 
-    #yesBtn {
-        background-color: #ff2e63;
-        color: white;
-    }
+#noBtn {
+    background-color: #eee;
+    color: black;
+    position: absolute;
+}
 
-    #noBtn {
-        background-color: #eee;
-        color: black;
-        position: absolute;
-    }
+#message {
+    margin-top: 15px;
+    color: #ff2e63;
+    font-weight: bold;
+    min-height: 22px;
+}
 
-    #message {
-        margin-top: 15px;
-        color: #ff2e63;
-        font-weight: bold;
-        min-height: 22px;
-    }
+/* Heartbeat animation */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    40% { transform: scale(1); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
 
-    /* Hearts */
-    .heart {
-        position: absolute;
-        font-size: 22px;
-        animation: floatUp 6s linear infinite;
-        color: rgba(255, 46, 99, 0.8);
-    }
+/* Floating hearts */
+.heart {
+    position: absolute;
+    font-size: 22px;
+    animation: floatUp 6s linear infinite;
+    color: rgba(255, 46, 99, 0.8);
+}
 
-    @keyframes floatUp {
-        0% { transform: translateY(100vh); opacity: 1; }
-        100% { transform: translateY(-10vh); opacity: 0; }
-    }
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
 
-    /* Fireworks */
-    .firework {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        background: transparent;
-        border-radius: 50%;
-        box-shadow:
-            0 0 #ff2e63,
-            20px 0 #ffd700,
-            -20px 0 #00eaff,
-            0 20px #9b5de5,
-            0 -20px #ff9f1c,
-            14px 14px #ff2e63,
-            -14px -14px #ffd700,
-            -14px 14px #00eaff,
-            14px -14px #9b5de5;
-        animation: explode 1s ease-out forwards;
-    }
+/* Fireworks */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    box-shadow:
+        0 0 #ff2e63,
+        20px 0 #ffd700,
+        -20px 0 #00eaff,
+        0 20px #9b5de5,
+        0 -20px #ff9f1c,
+        14px 14px #ff2e63,
+        -14px -14px #ffd700;
+    animation: explode 1s ease-out forwards;
+}
 
-    @keyframes explode {
-        from { transform: scale(0); opacity: 1; }
-        to { transform: scale(1.5); opacity: 0; }
-    }
+@keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(1.6); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
+
 
 <div class="card">
     <h1>Anjali ❤️</h1>
@@ -130,60 +133,80 @@
 </div>
 
 <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const music = document.getElementById("music");
-    let yesScale = 1;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("music");
 
-    function yesClicked() {
-        music.play();
-        document.querySelector(".card").innerHTML = `
-            <h1>Anjali 💖🥰</h1>
-            <p>You just made my world brighter ✨</p>
-            <p>Happy Valentine’s Day 🌹</p>
-        `;
-        launchFireworks();
+let yesScale = 1;
+let noAttempts = 0;
+
+const messages = [
+    "Heyyy 😌 NO is not an option, my heart says YES ❤️",
+    "Anjali 😂 why are you teasing me like this?",
+    "Look at the YES button… it’s beating just for you 💓",
+    "Okay wow, you’re cute AND stubborn 😏",
+    "Even the universe wants you to say YES 🌍💖",
+    "I’m smiling like an idiot… just press YES 🥹",
+    "Fine 😌 take your time… but YES looks perfect on you ❤️"
+];
+
+function yesClicked() {
+    music.play();
+    document.querySelector(".card").innerHTML = `
+        <h1>Anjali 💖🥰</h1>
+        <p>You just made my heart win 💕</p>
+        <p>Happy Valentine’s Day 🌹</p>
+    `;
+    launchFireworks();
+}
+
+function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    yesScale += 0.15;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+    yesBtn.style.animationDuration =
+        Math.max(0.6, 1.5 - noAttempts * 0.1) + "s";
+
+    document.getElementById("message").innerText =
+        messages[Math.min(noAttempts, messages.length - 1)];
+
+    noAttempts++;
+    music.play();
+}
+
+// Desktop + mobile interactions
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("mousedown", e => { e.preventDefault(); moveNoButton(); });
+noBtn.addEventListener("touchstart", e => { e.preventDefault(); moveNoButton(); });
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 350);
+
+// Fireworks
+function launchFireworks() {
+    for (let i = 0; i < 12; i++) {
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.left = Math.random() * window.innerWidth + "px";
+        fw.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
     }
-
-    function moveNoButton() {
-        const x = Math.random() * (window.innerWidth - 120);
-        const y = Math.random() * (window.innerHeight - 60);
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
-
-        yesScale += 0.15;
-        yesBtn.style.transform = `scale(${yesScale})`;
-
-        document.getElementById("message").innerText =
-            "Anjali 😌 the more you try NO, the bigger YES gets 💖";
-
-        music.play();
-    }
-
-    noBtn.addEventListener("mouseover", moveNoButton);
-    noBtn.addEventListener("touchstart", moveNoButton);
-
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 7000);
-    }
-    setInterval(createHeart, 350);
-
-    function launchFireworks() {
-        for (let i = 0; i < 8; i++) {
-            const fw = document.createElement("div");
-            fw.className = "firework";
-            fw.style.left = Math.random() * window.innerWidth + "px";
-            fw.style.top = Math.random() * window.innerHeight + "px";
-            document.body.appendChild(fw);
-            setTimeout(() => fw.remove(), 1000);
-        }
-    }
+}
 </script>
 
 </body>
