@@ -22,6 +22,7 @@ body {
 }
 
 .card {
+  position: relative;
   background: white;
   width: 90%;
   max-width: 420px;
@@ -39,11 +40,13 @@ h1 {
   margin: 18px 0;
   font-size: 16px;
   color: #333;
-  min-height: 52px;
+  min-height: 56px;
   font-weight: 500;
 }
 
 .buttons {
+  position: relative;
+  height: 120px;
   margin-top: 20px;
 }
 
@@ -64,7 +67,10 @@ button {
 
 #noBtn {
   background: #ddd;
-  margin-left: 15px;
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  transform: translateX(-50%);
 }
 
 @keyframes beat {
@@ -132,11 +138,12 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const msg = document.getElementById("message");
 const music = document.getElementById("music");
-const buttons = document.getElementById("buttons");
 const card = document.getElementById("card");
 
 let attempts = 0;
 let yesScale = 1;
+let noCanMove = false;
+let moving = false;
 
 const messages = [
   "Don’t you dare click NO 😤💖",
@@ -147,37 +154,60 @@ const messages = [
   "I’m smiling like crazy… just press YES 🥹"
 ];
 
-noBtn.addEventListener("click", () => {
-  if (attempts < messages.length) {
-    msg.textContent = messages[attempts];
-  }
-
+function growYes() {
   yesScale += 0.15;
   yesBtn.style.transform = `scale(${yesScale})`;
-
   yesBtn.style.animationDuration =
     Math.max(0.6, 1.5 - attempts * 0.12) + "s";
+}
 
+function moveNo() {
+  if (!noCanMove || moving) return;
+  moving = true;
+
+  const rect = card.getBoundingClientRect();
+  const x = Math.random() * (rect.width - 90);
+  const y = Math.random() * (rect.height - 120);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  setTimeout(() => moving = false, 200);
+}
+
+noBtn.addEventListener("click", () => {
   music.play();
-  attempts++;
 
-  // 🔥 After last message
-  if (attempts === messages.length) {
-    msg.textContent = "Alright 😌 NO is gone now… it’s just you and YES ❤️";
-    noBtn.remove();
+  if (attempts < messages.length) {
+    msg.textContent = messages[attempts];
+    growYes();
+    attempts++;
+
+    if (attempts === messages.length) {
+      msg.textContent =
+        "😈 If you REALLY want to hit NO… then keep trying";
+      noCanMove = true;
+    }
+  }
+});
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", e => {
+  if (noCanMove) {
+    e.preventDefault();
+    moveNo();
   }
 });
 
 yesBtn.addEventListener("click", () => {
   music.play();
-
-  yesScale += 0.2; // keeps growing every click
+  yesScale += 0.2;
   yesBtn.style.transform = `scale(${yesScale})`;
 
   card.innerHTML = `
-    <h1>Anjali 💖🥰</h1>
-    <p>You said YES… and I’ll never forget this moment 🥹❤️</p>
-    <p>Happy Valentine’s Day 🌹✨</p>
+    <h1>Anjali Good Girl 💖🥰</h1>
+    <p>You said YES… and my heart just won forever 🥹❤️</p>
+    <p>I LOVE YOU  🌹✨</p>
   `;
   fireworks();
 });
@@ -208,4 +238,3 @@ function fireworks() {
 
 </body>
 </html>
-
